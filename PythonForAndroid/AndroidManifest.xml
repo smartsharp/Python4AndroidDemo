@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.googlecode.pythonforandroid"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-sdk android:minSdkVersion="11" />
+    <application
+        android:icon="@drawable/py4a_icon"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".PythonMain"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.googlecode.android_scripting.DISCOVER_INTERPRETERS" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <data android:mimeType="script/.py" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/zip" />
+                <data android:mimeType="application/x-zip" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".PythonProvider"
+            android:authorities="com.googlecode.pythonforandroid.pythonprovider" />
+
+        <activity
+            android:name="com.googlecode.android_scripting.pythoncommon.FileBrowser"
+            android:label="File Browser" >
+            <intent-filter>
+                <action android:name="com.googlecode.pythonforandroid.FILEBROWSER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.googlecode.pythonforandroid.Preferences"
+            android:theme="@android:style/Theme.NoTitleBar" />
+    </application>
+
+</manifest>
